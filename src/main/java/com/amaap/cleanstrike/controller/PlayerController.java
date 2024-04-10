@@ -7,7 +7,7 @@ import com.amaap.cleanstrike.domain.model.GameRuleManager;
 
 public class PlayerController {
 
-    private PlayerService playerService;
+    private final PlayerService playerService;
 
     public PlayerController(PlayerService playerService) {
         this.playerService = playerService;

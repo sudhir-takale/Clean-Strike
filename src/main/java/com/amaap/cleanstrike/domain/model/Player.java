@@ -10,4 +10,11 @@ public class Player {
         this.points = 0;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+       return this.id;
+    }
 }
