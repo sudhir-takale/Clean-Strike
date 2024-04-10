@@ -1,6 +1,5 @@
-package com.amaap.cleanstrike;
+package com.amaap.cleanstrike.controller;
 
-import com.amaap.cleanstrike.controller.PlayerController;
 import com.amaap.cleanstrike.controller.dto.HttpStatus;
 import com.amaap.cleanstrike.controller.dto.Response;
 import com.amaap.cleanstrike.domain.model.GameRuleManager;
