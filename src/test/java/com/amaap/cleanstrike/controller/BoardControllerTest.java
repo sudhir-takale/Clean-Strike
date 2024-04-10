@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BoardControllerTest {
 
-    BoardController boardController = new BoardController(new BoardService(new BoardRepository(),
+    BoardController boardController = new BoardController(new BoardService(new BoardRepository(new FakeInMemoryDatabase()),
             new PlayerService(new PlayerRepository(new FakeInMemoryDatabase()))));
 
     @Test

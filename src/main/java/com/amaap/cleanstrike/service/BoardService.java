@@ -2,6 +2,7 @@ package com.amaap.cleanstrike.service;
 
 import com.amaap.cleanstrike.domain.model.Board;
 import com.amaap.cleanstrike.domain.model.Player;
+import com.amaap.cleanstrike.domain.service.WinnerEvaluator;
 import com.amaap.cleanstrike.repository.BoardRepository;
 import com.amaap.cleanstrike.service.exception.InvalidArgumentException;
 import com.amaap.cleanstrike.service.validator.BoardValidator;
@@ -27,4 +28,15 @@ public class BoardService {
         boardRepository.save(board);
         return true;
     }
+
+    public Board getBoard(int i) {
+        return boardRepository.getBoard(i);
+    }
+
+    public String getWinner(Board board) {
+
+        return WinnerEvaluator.getWinner(board);
+    }
+
+
 }

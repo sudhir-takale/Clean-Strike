@@ -1,13 +1,15 @@
 package com.amaap.cleanstrike.repository.db;
 
+import com.amaap.cleanstrike.domain.model.Board;
 import com.amaap.cleanstrike.domain.model.Player;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FakeInMemoryDatabase {
-    private int playerId = 0;
     private final List<Player> players = new ArrayList<>();
+    private final List<Board> boards = new ArrayList<>();
+    private int playerId = 0;
 
     public void save(Player player, Player player1) {
         playerId++;
@@ -18,8 +20,15 @@ public class FakeInMemoryDatabase {
         players.add(player1);
     }
 
-
     public List<Player> getPlayers() {
         return this.players;
+    }
+
+    public void save(Board board) {
+        boards.add(board);
+    }
+
+    public Board getBoard(int id) {
+        return boards.get(0);
     }
 }

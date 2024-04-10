@@ -16,4 +16,8 @@ public class Board {
     public void assignPlayers(List<Player> playerList) {
         this.players = playerList;
     }
+
+    public int getId() {
+        return this.id;
+    }
 }
