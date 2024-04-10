@@ -1,8 +1,9 @@
 package com.amaap.cleanstrike.controller;
 
-import com.amaap.cleanstrike.service.PlayerService;
+import com.amaap.cleanstrike.controller.dto.HttpStatus;
+import com.amaap.cleanstrike.controller.dto.Response;
 import com.amaap.cleanstrike.domain.model.GameRuleManager;
-
+import com.amaap.cleanstrike.service.PlayerService;
 
 
 public class PlayerController {
@@ -13,9 +14,8 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    public boolean createPlayers(GameRuleManager ruleManager) {
+    public Response createPlayers(GameRuleManager ruleManager) {
         playerService.createPlayers(ruleManager);
-//        return new Response(https.ok,"Players created Successfully");
-        return true;
+        return new Response(HttpStatus.OK, "Players created successfully");
     }
 }

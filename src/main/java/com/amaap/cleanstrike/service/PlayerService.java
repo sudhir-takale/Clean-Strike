@@ -4,6 +4,8 @@ import com.amaap.cleanstrike.domain.model.GameRuleManager;
 import com.amaap.cleanstrike.domain.model.Player;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 
+import java.util.List;
+
 public class PlayerService {
     private PlayerRepository playerRepository;
 
@@ -20,5 +22,9 @@ public class PlayerService {
         Player player1 = new Player(ruleManager);
         playerRepository.save(player, player1);
         return true;
+    }
+
+    public List<Player> getPlayers() {
+        return playerRepository.getPlayers();
     }
 }
