@@ -1,6 +1,6 @@
 package com.amaap.cleanstrike.repository;
 
-import com.amaap.cleanstrike.domain.model.GameRuleManager;
+import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.domain.model.Player;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
 import org.junit.jupiter.api.Test;

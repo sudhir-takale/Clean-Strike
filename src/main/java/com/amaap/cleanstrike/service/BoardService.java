@@ -22,9 +22,7 @@ public class BoardService {
         if (BoardValidator.validate(blackCoins, redCoin)) {
             throw new InvalidArgumentException("Check your coins");
         }
-        List<Player> playerList = playerService.getPlayers();
         Board board = new Board(blackCoins, redCoin);
-        board.assignPlayers(playerList);
         boardRepository.save(board);
         return true;
     }
@@ -32,11 +30,12 @@ public class BoardService {
     public Board getBoard(int i) {
         return boardRepository.getBoard(i);
     }
-
-    public String getWinner(Board board) {
-
-        return WinnerEvaluator.getWinner(board);
+    public void getWinner(Board board) {
+        List<Player> players = playerService.getPlayers();
+        System.out.println(players);
+        board.assignPlayers(players);
+        WinnerEvaluator winnerEvaluator = new WinnerEvaluator();
+        winnerEvaluator.getWinner(board);
     }
-
 
 }

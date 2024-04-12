@@ -1,6 +1,6 @@
 package com.amaap.cleanstrike.service;
 
-import com.amaap.cleanstrike.domain.model.GameRuleManager;
+import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.domain.model.Player;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
@@ -41,6 +41,7 @@ class PlayerServiceTest {
         playerService.createPlayers(gameRuleManager);
         //act
         List<Player> playerList = playerService.getPlayers();
+        System.out.println(playerList);
         //assert
         assertEquals(2, playerList.size());
     }

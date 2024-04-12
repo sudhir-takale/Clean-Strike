@@ -1,14 +1,13 @@
 package com.amaap.cleanstrike.service;
 
-import com.amaap.cleanstrike.domain.model.GameRuleManager;
+import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.domain.model.Player;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 
 import java.util.List;
 
 public class PlayerService {
-    private PlayerRepository playerRepository;
-
+    private final PlayerRepository playerRepository;
 
     public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;

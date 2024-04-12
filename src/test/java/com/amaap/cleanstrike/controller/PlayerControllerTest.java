@@ -2,7 +2,7 @@ package com.amaap.cleanstrike.controller;
 
 import com.amaap.cleanstrike.controller.dto.HttpStatus;
 import com.amaap.cleanstrike.controller.dto.Response;
-import com.amaap.cleanstrike.domain.model.GameRuleManager;
+import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
 import com.amaap.cleanstrike.service.PlayerService;

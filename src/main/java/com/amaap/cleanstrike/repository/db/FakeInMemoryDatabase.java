@@ -21,6 +21,7 @@ public class FakeInMemoryDatabase {
     }
 
     public List<Player> getPlayers() {
+        System.out.println(players);
         return this.players;
     }
 

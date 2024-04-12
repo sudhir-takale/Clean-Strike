@@ -26,3 +26,41 @@ Write a program that takes in the outcome of each turn as input and outputs the 
 game as and when applicable along with necessary statistics that supports the result. Please
 find sample input and output below:<br>
 
+
+
+
+Assumptions:
+    - carom can't exist without players
+
+
+Domain:
+
+Model:
+    - Entity 
+        - CaromBoard(id)
+        - Player(id);
+    - ValueObject
+        - All Strike
+        - GameRuleManager
+
+Service:
+    - WinnerEvaluator
+    - CaromBoardState(interface)
+
+Controller 
+    - PlayerController
+    - CaromController
+
+Services:
+    - PlayerService
+        - createPlayer()
+        - getPlayer()
+    
+    - CaromService
+        - createCarom()
+        - getCarom()
+        - getWinner()
+
+Repository:
+    - PlayerRepository
+    - CaromRepository

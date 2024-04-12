@@ -3,8 +3,8 @@ package com.amaap.cleanstrike.domain.model;
 import java.util.List;
 
 public class Board {
-    private final int blackCoins;
-    private final int redCoins;
+    private int blackCoins;
+    private int redCoins;
     private int id;
     private List<Player> players;
 
@@ -19,5 +19,33 @@ public class Board {
 
     public int getId() {
         return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getBlackCoins() {
+        return blackCoins;
+    }
+
+    public void setBlackCoins(int coin) {
+        this.blackCoins = coin;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+
+    public int getRedCoins() {
+        return redCoins;
+    }
+
+    public void setRedCoins(int coins) {
+        this.redCoins = coins;
     }
 }
