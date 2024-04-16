@@ -1,6 +1,6 @@
 package com.amaap.cleanstrike.repository;
 
-import com.amaap.cleanstrike.domain.model.Board;
+import com.amaap.cleanstrike.domain.model.entity.Board;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
 
 public class BoardRepository {

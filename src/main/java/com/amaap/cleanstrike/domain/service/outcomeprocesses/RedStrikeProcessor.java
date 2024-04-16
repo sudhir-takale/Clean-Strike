@@ -1,10 +1,10 @@
-package com.amaap.cleanstrike.domain.model.valueobject;
+package com.amaap.cleanstrike.domain.service.outcomeprocesses;
 
-import com.amaap.cleanstrike.domain.model.Board;
-import com.amaap.cleanstrike.domain.model.Player;
+import com.amaap.cleanstrike.domain.model.entity.Board;
+import com.amaap.cleanstrike.domain.model.entity.Player;
 import com.amaap.cleanstrike.domain.service.CaromBoardState;
 
-public class RedStrike implements CaromBoardState {
+public class RedStrikeProcessor implements CaromBoardState {
 
     @Override
     public void applyStrike(Board board, int playerId) {

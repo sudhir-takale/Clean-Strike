@@ -1,7 +1,7 @@
 package com.amaap.cleanstrike.repository.db;
 
-import com.amaap.cleanstrike.domain.model.Board;
-import com.amaap.cleanstrike.domain.model.Player;
+import com.amaap.cleanstrike.domain.model.entity.Board;
+import com.amaap.cleanstrike.domain.model.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;

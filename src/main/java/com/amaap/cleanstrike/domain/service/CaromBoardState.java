@@ -1,7 +1,6 @@
 package com.amaap.cleanstrike.domain.service;
 
-import com.amaap.cleanstrike.domain.model.Board;
-import com.amaap.cleanstrike.domain.model.Player;
+import com.amaap.cleanstrike.domain.model.entity.Board;
 
 public interface CaromBoardState {
 

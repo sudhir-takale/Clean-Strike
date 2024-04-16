@@ -1,6 +1,6 @@
 package com.amaap.cleanstrike.service;
 
-import com.amaap.cleanstrike.domain.model.Board;
+import com.amaap.cleanstrike.domain.model.entity.Board;
 import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.repository.BoardRepository;
 import com.amaap.cleanstrike.repository.PlayerRepository;

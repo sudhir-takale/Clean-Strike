@@ -1,8 +1,8 @@
 package com.amaap.cleanstrike.domain.service;
 
-import com.amaap.cleanstrike.domain.model.Board;
-import com.amaap.cleanstrike.domain.model.Player;
-import com.amaap.cleanstrike.domain.model.valueobject.*;
+import com.amaap.cleanstrike.domain.model.entity.Board;
+import com.amaap.cleanstrike.domain.model.entity.Player;
+import com.amaap.cleanstrike.domain.service.outcomeprocesses.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +18,11 @@ public class WinnerEvaluator {
     public void getWinner(Board board) {
 
         List<CaromBoardState> boardStates = new ArrayList<>();
-        boardStates.add(new RedStrike());
-        boardStates.add(new MultiStrike());
-        boardStates.add(new Strike());
-        boardStates.add(new DefunctCoin());
-        boardStates.add(new StrikerStrike());
+        boardStates.add(new RedStrikeProcessor());
+        boardStates.add(new MultiStrikeProcessor());
+        boardStates.add(new StrikeProcessor());
+        boardStates.add(new DefunctCoinProcessor());
+        boardStates.add(new StrikerStrikeProcessor());
 //        boardStates.add(new NonStrike());
 
 

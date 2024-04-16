@@ -1,4 +1,4 @@
-package com.amaap.cleanstrike.domain.model;
+package com.amaap.cleanstrike.domain.model.entity;
 
 import java.util.List;
 

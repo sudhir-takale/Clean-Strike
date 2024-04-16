@@ -1,7 +1,7 @@
 package com.amaap.cleanstrike.service;
 
-import com.amaap.cleanstrike.domain.model.Board;
-import com.amaap.cleanstrike.domain.model.Player;
+import com.amaap.cleanstrike.domain.model.entity.Board;
+import com.amaap.cleanstrike.domain.model.entity.Player;
 import com.amaap.cleanstrike.domain.service.WinnerEvaluator;
 import com.amaap.cleanstrike.repository.BoardRepository;
 import com.amaap.cleanstrike.service.exception.InvalidArgumentException;
