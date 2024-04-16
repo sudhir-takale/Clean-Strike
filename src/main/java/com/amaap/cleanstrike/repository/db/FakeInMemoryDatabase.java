@@ -10,26 +10,32 @@ public class FakeInMemoryDatabase {
     private final List<Player> players = new ArrayList<>();
     private final List<Board> boards = new ArrayList<>();
     private int playerId = 0;
+    private int boardId = 0;
 
-    public void save(Player player, Player player1) {
+    public void save(Player player) {
         playerId++;
         player.setId(playerId);
-        playerId++;
-        player1.setId(playerId);
         players.add(player);
-        players.add(player1);
     }
 
     public List<Player> getPlayers() {
-        System.out.println(players);
         return this.players;
     }
 
-    public void save(Board board) {
+    public int add(Board board) {
+        boardId++;
         boards.add(board);
+        board.setId(boardId);
+        return 1;
     }
 
     public Board getBoard(int id) {
-        return boards.get(0);
+        Board board1 = null;
+        for (Board board : boards) {
+            if (board.getId() == id) board1 = board;
+        }
+
+        return board1;
     }
+
 }

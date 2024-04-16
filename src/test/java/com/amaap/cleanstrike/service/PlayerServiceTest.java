@@ -1,7 +1,7 @@
 package com.amaap.cleanstrike.service;
 
-import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.domain.model.entity.Player;
+import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
 import org.junit.jupiter.api.Test;
@@ -20,8 +20,10 @@ class PlayerServiceTest {
     void shouldBeAbleToCreateTwoPlayers() {
         //arrange
         GameRuleManager gameRuleManager = new GameRuleManager();
+
         //act
-        boolean result = playerService.createPlayers(gameRuleManager);
+        boolean result = playerService.createPlayer(gameRuleManager);
+
         //assert
         assertTrue(result);
     }
@@ -30,18 +32,21 @@ class PlayerServiceTest {
     void shouldThrowExceptionWhenRuleManagerIsNull() {
         //arrange
         GameRuleManager ruleManager = null;
+
         //assert
-        assertThrows(NullPointerException.class, () -> playerService.createPlayers(ruleManager));
+        assertThrows(NullPointerException.class, () -> playerService.createPlayer(null));
     }
 
     @Test
     void shouldReturnListOfTwoPlayers() {
         //arrange
         GameRuleManager gameRuleManager = new GameRuleManager();
-        playerService.createPlayers(gameRuleManager);
+        playerService.createPlayer(gameRuleManager);
+        playerService.createPlayer(gameRuleManager);
+
         //act
-        List<Player> playerList = playerService.getPlayers();
-        System.out.println(playerList);
+        List<Player> playerList = playerService.getPlayer();
+
         //assert
         assertEquals(2, playerList.size());
     }

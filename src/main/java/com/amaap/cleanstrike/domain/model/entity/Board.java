@@ -3,9 +3,10 @@ package com.amaap.cleanstrike.domain.model.entity;
 import java.util.List;
 
 public class Board {
+
+    private int id;
     private int blackCoins;
     private int redCoins;
-    private int id;
     private List<Player> players;
 
     public Board(int blackCoins, int redCoin) {

@@ -12,8 +12,8 @@ public class PlayerRepository {
         this.database = database;
     }
 
-    public void save(Player player, Player player1) {
-        database.save(player, player1);
+    public void save(Player player) {
+        database.save(player);
     }
 
     public List<Player> getPlayers() {

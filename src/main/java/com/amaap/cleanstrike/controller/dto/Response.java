@@ -23,4 +23,13 @@ public class Response {
     public int hashCode() {
         return Objects.hash(httpStatus, response);
     }
+
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "httpStatus=" + httpStatus +
+                ", response='" + response + '\'' +
+                '}';
+    }
 }

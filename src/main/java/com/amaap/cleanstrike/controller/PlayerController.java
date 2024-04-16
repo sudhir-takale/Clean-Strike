@@ -14,8 +14,8 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
-    public Response createPlayers(GameRuleManager ruleManager) {
-        playerService.createPlayers(ruleManager);
+    public Response createPlayer(GameRuleManager ruleManager) {
+        playerService.createPlayer(ruleManager);
         return new Response(HttpStatus.OK, "Players created successfully");
     }
 }

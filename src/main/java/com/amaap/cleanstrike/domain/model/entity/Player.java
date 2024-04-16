@@ -3,21 +3,22 @@ package com.amaap.cleanstrike.domain.model.entity;
 import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 
 public class Player {
-   private int id;
+    private int id;
     private GameRuleManager ruleManager;
     private int points;
+
 
     public Player(GameRuleManager ruleManager) {
         this.ruleManager = ruleManager;
         this.points = 0;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getId() {
+        return this.id;
     }
 
-    public int getId() {
-       return this.id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getPoints() {

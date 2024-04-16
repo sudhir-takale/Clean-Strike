@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class BoardServiceTest {
 
     PlayerService playerService = new PlayerService(new PlayerRepository(new FakeInMemoryDatabase()));
-    BoardService boardService = new BoardService(new BoardRepository(new FakeInMemoryDatabase()),playerService);
+    BoardService boardService = new BoardService(new BoardRepository(new FakeInMemoryDatabase()), playerService);
 
     @Test
     void shouldBeAbleToCreateCaromBoardWithInitialValues() throws InvalidArgumentException {
@@ -31,18 +31,16 @@ class BoardServiceTest {
     }
 
 
-
-
-
     @Test
     void shouldBeAbleToGetWinnerOfTheGame() throws InvalidArgumentException {
         //act
         boardService.create(9, 1);
         Board board = boardService.getBoard(1);
-        boolean result = playerService.createPlayers(new GameRuleManager());
+        boolean result = playerService.createPlayer(new GameRuleManager());
+        playerService.createPlayer(new GameRuleManager());
         System.out.println(result);
         //act
-         boardService.getWinner(board);
+        boardService.getWinner(board);
 
 
     }

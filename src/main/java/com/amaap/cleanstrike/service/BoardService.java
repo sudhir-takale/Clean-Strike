@@ -20,7 +20,7 @@ public class BoardService {
 
     public boolean create(int blackCoins, int redCoin) throws InvalidArgumentException {
         if (BoardValidator.validate(blackCoins, redCoin)) {
-            throw new InvalidArgumentException("Check your coins");
+            throw new InvalidArgumentException("Check your arguments");
         }
         Board board = new Board(blackCoins, redCoin);
         boardRepository.save(board);
@@ -30,8 +30,9 @@ public class BoardService {
     public Board getBoard(int i) {
         return boardRepository.getBoard(i);
     }
+
     public void getWinner(Board board) {
-        List<Player> players = playerService.getPlayers();
+        List<Player> players = playerService.getPlayer();
         System.out.println(players);
         board.assignPlayers(players);
         WinnerEvaluator winnerEvaluator = new WinnerEvaluator();

@@ -11,11 +11,14 @@ class PlayerRepositoryTest {
 
     PlayerRepository playerRepository = new PlayerRepository(new FakeInMemoryDatabase());
     @Test
-    void shouldBeAbleToAddPlayersInDatabase() {
+    void shouldBeAbleToAddPlayerInDatabase() {
         //arrange
         GameRuleManager gameRuleManager = new GameRuleManager();
+
         //act
-        playerRepository.save(new Player(gameRuleManager),new Player(gameRuleManager));
+        playerRepository.save(new Player(gameRuleManager));
+        playerRepository.save(new Player(gameRuleManager));
+
         //assert
         assertEquals(2, playerRepository.getPlayers().size());
     }

@@ -4,14 +4,14 @@ import com.amaap.cleanstrike.domain.model.entity.Board;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
 
 public class BoardRepository {
-    private FakeInMemoryDatabase database;
+    private final FakeInMemoryDatabase database;
 
     public BoardRepository(FakeInMemoryDatabase database) {
         this.database = database;
     }
 
-    public void save(Board board) {
-        database.save(board);
+    public int save(Board board) {
+        return database.add(board);
     }
 
     public Board getBoard(int i) {

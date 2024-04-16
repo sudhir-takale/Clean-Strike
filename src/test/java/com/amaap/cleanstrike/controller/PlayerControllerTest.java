@@ -19,8 +19,10 @@ public class PlayerControllerTest {
         //arrange
         GameRuleManager ruleManager = new GameRuleManager();
         Response expected = new Response(HttpStatus.OK,"Players created successfully" );
+
         //act
-        Response actual = playerController.createPlayers(ruleManager);
+        Response actual = playerController.createPlayer(ruleManager);
+
         //assert
         Assertions.assertEquals(expected, actual);
 
