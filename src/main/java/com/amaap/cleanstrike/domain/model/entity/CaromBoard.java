@@ -2,21 +2,18 @@ package com.amaap.cleanstrike.domain.model.entity;
 
 import java.util.List;
 
-public class Board {
+public class CaromBoard {
 
     private int id;
     private int blackCoins;
     private int redCoins;
     private List<Player> players;
 
-    public Board(int blackCoins, int redCoin) {
+    public CaromBoard(int blackCoins, int redCoin) {
         this.blackCoins = blackCoins;
         this.redCoins = redCoin;
     }
 
-    public void assignPlayers(List<Player> playerList) {
-        this.players = playerList;
-    }
 
     public int getId() {
         return this.id;

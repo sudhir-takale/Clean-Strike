@@ -2,17 +2,17 @@ package com.amaap.cleanstrike.controller;
 
 import com.amaap.cleanstrike.controller.dto.HttpStatus;
 import com.amaap.cleanstrike.controller.dto.Response;
-import com.amaap.cleanstrike.repository.BoardRepository;
+import com.amaap.cleanstrike.repository.CaromBoardRepository;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
-import com.amaap.cleanstrike.service.BoardService;
+import com.amaap.cleanstrike.service.CaromBoardService;
 import com.amaap.cleanstrike.service.PlayerService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class BoardControllerTest {
+public class CaromBoardControllerTest {
 
-    BoardController boardController = new BoardController(new BoardService(new BoardRepository(new FakeInMemoryDatabase()), new PlayerService(new PlayerRepository(new FakeInMemoryDatabase()))));
+    BoardController boardController = new BoardController(new CaromBoardService(new CaromBoardRepository(new FakeInMemoryDatabase()), new PlayerService(new PlayerRepository(new FakeInMemoryDatabase()))));
 
     @Test
     void shouldBeAbleToCreateBoard() {

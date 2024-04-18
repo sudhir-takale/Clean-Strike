@@ -1,21 +1,21 @@
 package com.amaap.cleanstrike.repository;
 
-import com.amaap.cleanstrike.domain.model.entity.Board;
+import com.amaap.cleanstrike.domain.model.entity.CaromBoard;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class BoardRepositoryTest {
+class CaromCaromBoardRepositoryTest {
 
-    BoardRepository boardRepository = new BoardRepository(new FakeInMemoryDatabase());
+    CaromBoardRepository caromBoardRepository = new CaromBoardRepository(new FakeInMemoryDatabase());
 
     @Test
     void shouldBeAbleToSaveTheCaromBoard() {
         // arrange
-        Board board = new Board(9, 1);
+        CaromBoard board = new CaromBoard(9, 1);
 
         // act
-        int result = boardRepository.save(board);
+        int result = caromBoardRepository.save(board);
 
         // assert
         Assertions.assertEquals(1, result);
@@ -26,10 +26,10 @@ class BoardRepositoryTest {
     void shouldBeAbleToGetTheCaromBoardForAnId() {
         // arrange
         int id = 1;
-        Board expected = new Board(9, 1);
-        boardRepository.save(expected);
+        CaromBoard expected = new CaromBoard(9, 1);
+        caromBoardRepository.save(expected);
         // act
-        Board actual = boardRepository.getBoard(id);
+        CaromBoard actual = caromBoardRepository.getBoard(id);
 
         // assert
         Assertions.assertEquals(1, actual.getId());

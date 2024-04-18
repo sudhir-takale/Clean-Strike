@@ -1,6 +1,6 @@
 package com.amaap.cleanstrike.domain.service;
 
-import com.amaap.cleanstrike.domain.model.entity.Board;
+import com.amaap.cleanstrike.domain.model.entity.CaromBoard;
 import com.amaap.cleanstrike.domain.model.entity.Player;
 import com.amaap.cleanstrike.domain.service.outcomeprocesses.*;
 
@@ -9,13 +9,14 @@ import java.util.List;
 import java.util.Random;
 
 public class WinnerEvaluator {
-    private int currentPlayerIndex;
 
-    public WinnerEvaluator() {
-        this.currentPlayerIndex = 0;
+    private void attemptStrike(Player player, CaromBoard caromBoard, CaromBoardState selectedState) {
+        System.out.println("Current player: " + player.getId());
+        System.out.println("Playing strike: " + selectedState.getClass().getSimpleName());
+        selectedState.applyStrike(caromBoard, player);
     }
 
-    public void getWinner(Board board) {
+    public void getWinner(CaromBoard carromBoard) {
 
         List<CaromBoardState> boardStates = new ArrayList<>();
         boardStates.add(new RedStrikeProcessor());
@@ -23,38 +24,35 @@ public class WinnerEvaluator {
         boardStates.add(new StrikeProcessor());
         boardStates.add(new DefunctCoinProcessor());
         boardStates.add(new StrikerStrikeProcessor());
-//        boardStates.add(new NonStrike());
 
+        Player player1 = carromBoard.getPlayers().get(0);
+        Player player2 = carromBoard.getPlayers().get(1);
 
-        List<Player> players = board.getPlayers();
+        while (true) {
 
-        Player player1 = players.get(0);
-        System.out.println("player 1" + player1.getId());
-        Player player2 = players.get(1);
-        System.out.println("player2 " + player2.getId());
+            Random random = new Random();
+            int randomIndex = random.nextInt(boardStates.size());
+            CaromBoardState selectedState = boardStates.get(randomIndex);
 
-        boolean isGameOver = false;
-        while (!isGameOver) {
-            if (board.getBlackCoins() + board.getRedCoins() == 0) {
-                System.out.println("draw");
-                isGameOver = true;
-            } else if ((player1.getPoints() >= 5 && player1.getPoints() >= player2.getPoints() + 3)) {
-                System.out.println("player 1");
-                isGameOver = true;
-            } else if ((player2.getPoints() >= 5 && player2.getPoints() >= player1.getPoints() + 3)) {
-                System.out.println("player 2");
-                isGameOver = true;
-            } else {
-                Player currentPlayer = players.get(currentPlayerIndex);
-                System.out.println(currentPlayerIndex);
-                System.out.println("Current player: " + currentPlayer.getId());
+            attemptStrike(player1, carromBoard, selectedState);
+            System.out.println("Player one points :" + player1.getPoints());
+            int newRandomIndex = random.nextInt(boardStates.size());
+            CaromBoardState newSelectedState = boardStates.get(newRandomIndex);
+            attemptStrike(player2, carromBoard, newSelectedState);
+            System.out.println("Player two points :" + player2.getPoints());
+            if (carromBoard.getBlackCoins() == 0 && carromBoard.getRedCoins() == 0) {
+                System.out.println("Draw");
+                break;
+            }
+            if (player1.getPoints() >= 5 && player1.getPoints() - player2.getPoints() >= 3) {
+                System.out.println("player1");
+                break;
 
-                Random random = new Random();
-                int randomIndex = random.nextInt(boardStates.size());
-                CaromBoardState selectedState = boardStates.get(randomIndex);
-                System.out.println("Playing strike: " + selectedState.getClass().getSimpleName());
-                selectedState.applyStrike(board, currentPlayer.getId());
-                currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+            }
+            if (player2.getPoints() >= 5 && player2.getPoints() - player1.getPoints() >= 3) {
+                System.out.println("player1");
+                break;
+
             }
         }
 

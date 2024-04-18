@@ -1,8 +1,8 @@
 package com.amaap.cleanstrike.service;
 
-import com.amaap.cleanstrike.domain.model.entity.Board;
+import com.amaap.cleanstrike.domain.model.entity.CaromBoard;
 import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
-import com.amaap.cleanstrike.repository.BoardRepository;
+import com.amaap.cleanstrike.repository.CaromBoardRepository;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
 import com.amaap.cleanstrike.service.exception.InvalidArgumentException;
@@ -11,15 +11,15 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class BoardServiceTest {
+class CaromBoardServiceTest {
 
     PlayerService playerService = new PlayerService(new PlayerRepository(new FakeInMemoryDatabase()));
-    BoardService boardService = new BoardService(new BoardRepository(new FakeInMemoryDatabase()), playerService);
+    CaromBoardService caromBoardService = new CaromBoardService(new CaromBoardRepository(new FakeInMemoryDatabase()), playerService);
 
     @Test
     void shouldBeAbleToCreateCaromBoardWithInitialValues() throws InvalidArgumentException {
         // act
-        boolean result = boardService.create(9, 1);
+        boolean result = caromBoardService.create(9, 1);
         //assert
         assertTrue(result);
     }
@@ -27,21 +27,21 @@ class BoardServiceTest {
     @Test
     void shouldThrowExceptionIfInvalidCountOfCoinsIsPassed() {
         //assert
-        assertThrows(InvalidArgumentException.class, () -> boardService.create(1, 0));
+        assertThrows(InvalidArgumentException.class, () -> caromBoardService.create(1, 0));
     }
 
 
     @Test
     void shouldBeAbleToGetWinnerOfTheGame() throws InvalidArgumentException {
-        //act
-        boardService.create(9, 1);
-        Board board = boardService.getBoard(1);
+        // arrange
+        caromBoardService.create(9, 1);
+        CaromBoard board = caromBoardService.getBoard(1);
         boolean result = playerService.createPlayer(new GameRuleManager());
         playerService.createPlayer(new GameRuleManager());
         playerService.createPlayer(new GameRuleManager());
-        System.out.println(result);
+
         //act
-        boardService.getWinner(board);
+        caromBoardService.getWinner(board);
 
 
     }

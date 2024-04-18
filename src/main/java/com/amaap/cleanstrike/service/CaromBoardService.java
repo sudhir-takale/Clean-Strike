@@ -1,21 +1,21 @@
 package com.amaap.cleanstrike.service;
 
-import com.amaap.cleanstrike.domain.model.entity.Board;
+import com.amaap.cleanstrike.domain.model.entity.CaromBoard;
 import com.amaap.cleanstrike.domain.model.entity.Player;
 import com.amaap.cleanstrike.domain.service.WinnerEvaluator;
-import com.amaap.cleanstrike.repository.BoardRepository;
+import com.amaap.cleanstrike.repository.CaromBoardRepository;
 import com.amaap.cleanstrike.service.exception.InvalidArgumentException;
 import com.amaap.cleanstrike.service.validator.BoardValidator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BoardService {
+public class CaromBoardService {
     private final PlayerService playerService;
-    private final BoardRepository boardRepository;
+    private final CaromBoardRepository caromBoardRepository;
 
-    public BoardService(BoardRepository boardRepository, PlayerService playerService) {
-        this.boardRepository = boardRepository;
+    public CaromBoardService(CaromBoardRepository caromBoardRepository, PlayerService playerService) {
+        this.caromBoardRepository = caromBoardRepository;
         this.playerService = playerService;
     }
 
@@ -23,19 +23,19 @@ public class BoardService {
         if (BoardValidator.validate(blackCoins, redCoin)) {
             throw new InvalidArgumentException("Check your arguments");
         }
-        Board board = new Board(blackCoins, redCoin);
-        boardRepository.save(board);
+        CaromBoard board = new CaromBoard(blackCoins, redCoin);
+        caromBoardRepository.save(board);
         return true;
     }
 
-    public Board getBoard(int i) {
-        return boardRepository.getBoard(i);
+    public CaromBoard getBoard(int i) {
+        return caromBoardRepository.getBoard(i);
     }
 
-    public void getWinner(Board board) {
+    public void getWinner(CaromBoard board) {
 
         List<Player> players = getPlayersToAssign();
-        board.assignPlayers(players);
+        board.setPlayers(players);
         WinnerEvaluator winnerEvaluator = new WinnerEvaluator();
         winnerEvaluator.getWinner(board);
 
