@@ -5,6 +5,7 @@ import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 
 import java.util.List;
+import java.util.Random;
 
 public class PlayerService {
 
@@ -25,5 +26,10 @@ public class PlayerService {
 
     public List<Player> getPlayer() {
         return playerRepository.getPlayers();
+    }
+
+    public int getRandomIndex(int maxLimit) {
+        Random random = new Random();
+        return random.nextInt(maxLimit);
     }
 }

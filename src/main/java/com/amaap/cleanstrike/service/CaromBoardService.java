@@ -36,9 +36,8 @@ public class CaromBoardService {
 
         List<Player> players = getPlayersToAssign();
         board.setPlayers(players);
-        WinnerEvaluator winnerEvaluator = new WinnerEvaluator();
+        WinnerEvaluator winnerEvaluator = new WinnerEvaluator(playerService);
         winnerEvaluator.getWinner(board);
-
     }
 
     private List<Player> getPlayersToAssign() {

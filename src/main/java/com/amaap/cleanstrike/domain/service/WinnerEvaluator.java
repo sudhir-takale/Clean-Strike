@@ -3,20 +3,22 @@ package com.amaap.cleanstrike.domain.service;
 import com.amaap.cleanstrike.domain.model.entity.CaromBoard;
 import com.amaap.cleanstrike.domain.model.entity.Player;
 import com.amaap.cleanstrike.domain.service.outcomeprocesses.*;
+import com.amaap.cleanstrike.service.PlayerService;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class WinnerEvaluator {
+    private final PlayerService playerService;
 
-    private void attemptStrike(Player player, CaromBoard caromBoard, CaromBoardState selectedState) {
-        System.out.println("Current player: " + player.getId());
-        System.out.println("Playing strike: " + selectedState.getClass().getSimpleName());
-        selectedState.applyStrike(caromBoard, player);
+    public WinnerEvaluator(PlayerService playerService) {
+        this.playerService = playerService;
     }
 
-    public void getWinner(CaromBoard carromBoard) {
+
+    public String getWinner(CaromBoard caromBoard) {
+        int MAX_SCORE_TO_WIN = 5;
+        int MIN_SCORE_TO_WIN = 3;
 
         List<CaromBoardState> boardStates = new ArrayList<>();
         boardStates.add(new RedStrikeProcessor());
@@ -25,33 +27,37 @@ public class WinnerEvaluator {
         boardStates.add(new DefunctCoinProcessor());
         boardStates.add(new StrikerStrikeProcessor());
 
-        Player player1 = carromBoard.getPlayers().get(0);
-        Player player2 = carromBoard.getPlayers().get(1);
+        Player firstPlayer = caromBoard.getPlayers().get(0);
+        Player secondPlayer = caromBoard.getPlayers().get(1);
 
         while (true) {
 
-            Random random = new Random();
-            int randomIndex = random.nextInt(boardStates.size());
+            int randomIndex = playerService.getRandomIndex(boardStates.size());
             CaromBoardState selectedState = boardStates.get(randomIndex);
 
-            attemptStrike(player1, carromBoard, selectedState);
-            System.out.println("Player one points :" + player1.getPoints());
-            int newRandomIndex = random.nextInt(boardStates.size());
-            CaromBoardState newSelectedState = boardStates.get(newRandomIndex);
-            attemptStrike(player2, carromBoard, newSelectedState);
-            System.out.println("Player two points :" + player2.getPoints());
-            if (carromBoard.getBlackCoins() == 0 && carromBoard.getRedCoins() == 0) {
-                System.out.println("Draw");
-                break;
-            }
-            if (player1.getPoints() >= 5 && player1.getPoints() - player2.getPoints() >= 3) {
-                System.out.println("player1");
-                break;
+            selectedState.applyStrike(caromBoard, firstPlayer);
+            System.out.println("Player one points :" + firstPlayer.getPoints());
 
-            }
-            if (player2.getPoints() >= 5 && player2.getPoints() - player1.getPoints() >= 3) {
-                System.out.println("player1");
-                break;
+            int newRandomIndex = playerService.getRandomIndex(boardStates.size());
+            CaromBoardState newSelectedState = boardStates.get(newRandomIndex);
+
+            newSelectedState.applyStrike(caromBoard, secondPlayer);
+            System.out.println("Player two points :" + secondPlayer.getPoints());
+
+
+            if (caromBoard.getBlackCoins() == 0 && caromBoard.getRedCoins() == 0) {
+                System.out.println("Draw");
+                return "Draw";
+            } else if (firstPlayer.getPoints() >= MAX_SCORE_TO_WIN && firstPlayer.getPoints() - secondPlayer.getPoints() >= MIN_SCORE_TO_WIN) {
+                System.out.println(caromBoard.getBlackCoins() + " " + caromBoard.getRedCoins());
+                System.out.println("firstPlayer");
+                return "Player 1";
+
+            } else if (secondPlayer.getPoints() >= MAX_SCORE_TO_WIN && secondPlayer.getPoints() - firstPlayer.getPoints() >= MIN_SCORE_TO_WIN) {
+                System.out.println(caromBoard.getBlackCoins() + " " + caromBoard.getRedCoins());
+                System.out.println("secondPlayer");
+                return "Player 2";
+
 
             }
         }
