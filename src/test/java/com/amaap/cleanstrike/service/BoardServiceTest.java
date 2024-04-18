@@ -38,6 +38,7 @@ class BoardServiceTest {
         Board board = boardService.getBoard(1);
         boolean result = playerService.createPlayer(new GameRuleManager());
         playerService.createPlayer(new GameRuleManager());
+        playerService.createPlayer(new GameRuleManager());
         System.out.println(result);
         //act
         boardService.getWinner(board);

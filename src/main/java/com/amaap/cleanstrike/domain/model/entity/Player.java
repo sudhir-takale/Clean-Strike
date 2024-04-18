@@ -36,4 +36,13 @@ public class Player {
     public void setRuleManager(GameRuleManager ruleManager) {
         this.ruleManager = ruleManager;
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", ruleManager=" + ruleManager +
+                ", points=" + points +
+                '}';
+    }
 }
