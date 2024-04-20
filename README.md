@@ -27,36 +27,100 @@ game as and when applicable along with necessary statistics that supports the re
 find sample input and output below:<br>
 
 Assumptions:
-- carom board don't exist without players
 
-Domain:
+- carom board don't exist without players.
 
-Model:
+### Design Pattern used :
+
+- Used State Design Pattern to change the state of carom board according to Strike .
+
+## Domain:
+
+### Model:
+
 - Entity
-- CaromBoard(id)
-- Player(id);
+    - CaromBoard
+        - id
+        - blackCoinsCount
+        - redCoinsCount
+        - Striker
+    - Player
+        - id
+        - FoulStrikeManager
+        - pointsCount
+
 - ValueObject
-- All Strike
-- GameRuleManager
+    - FoulStrikeManager - it will manage the foul strikes operation
 
-Service:
-- WinnerEvaluator
-- CaromBoardState(interface)
+- Service:
+    - WinnerEvaluator - it is domain service which return string of winner player or draw match
+    - CaromBoardState(interface) - has method like applyStrike() which will according to the strike it will call the
+      class method will implements this interface
+    - StrikeProcesses
+        - StrikeProcessor implements CarromBoardState interface
+            - applyStrike(CaromBoard, Player)
 
-Controller
-- PlayerController
-- CaromController
+### Controller
 
-Services:
+- PlayerController - to helps to manage player operations
+    - createPlayer
+    - getPlayer
+
+- CaromController - Manages everything related with carom Operations
+    - createCaromBoard - it crates carom Board
+    - getCaromBoard(id)     - it will get carom with id from repository
+    - getWinnerOfTheGame()  - to start the game
+
+### Services -
+
 - PlayerService
-- createPlayer()
-- getPlayer()
+    - createPlayer - create a player
+    - getPlayer()   - get a player from repository
+    - generateARandomNumber()  - generate a random number which used inside the domain service
 
-    - CaromService
-        - createCarom()
-        - getCarom()
-        - getWinner()
+- CaromService
+    - createCarom()   - create a new carom
+    - getCarom()      - get Carom from the repository
+    - getWinner()     - to start the game and it will the domain service and pass the carom board
 
-Repository:
-- PlayerRepository
-- CaromRepository
+### Repository:
+
+- PlayerRepository - helps to store the players
+- CaromRepository - it stores the carom board, it may have multiple carom board
+
+## Flow
+
+- create player (at least we required two players to start with game)
+- create carom board
+- getCaromBoard from repository
+    - assign players to carom board to start game
+- create strikes classes which will used in domain service
+- call the getWinner method to start the game of caromService class
+- internally it will call to domain service to evaluate the winner and we pass carom board
+- to get the random number it will call to player service to get random number
+- finally it will perform processing and give the winner of game
+
+### Approach
+
+- createAPlayerController
+    - createPlayers()
+    - getPlayers()
+- createPlayerService
+    - createANewPlayer
+    - call repository to store player
+    - create a randomNumberGenerator method which generates random numbers used by domain service
+- createPlayerRepository
+    - store the player
+- createCaromController
+    - call the carom service to store the
+- createACaromService
+    - create a carom board
+    - get the carom board
+- createCaromRepository
+    - stores the carom board
+
+- Domain Service
+    - create the strike classes
+    - create a domain service as WinnerEvaluator which perform operation and returns the winner
+    - get the random number from player Service class
+  

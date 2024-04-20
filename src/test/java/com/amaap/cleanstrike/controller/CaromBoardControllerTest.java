@@ -2,9 +2,9 @@ package com.amaap.cleanstrike.controller;
 
 import com.amaap.cleanstrike.controller.dto.HttpStatus;
 import com.amaap.cleanstrike.controller.dto.Response;
-import com.amaap.cleanstrike.repository.CaromBoardRepository;
-import com.amaap.cleanstrike.repository.PlayerRepository;
-import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
+import com.amaap.cleanstrike.repository.impl.CaromBoardRepositoryImpl;
+import com.amaap.cleanstrike.repository.impl.PlayerRepositoryImpl;
+import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabaseImpl;
 import com.amaap.cleanstrike.service.CaromBoardService;
 import com.amaap.cleanstrike.service.PlayerService;
 import org.junit.jupiter.api.Assertions;
@@ -12,7 +12,9 @@ import org.junit.jupiter.api.Test;
 
 public class CaromBoardControllerTest {
 
-    BoardController boardController = new BoardController(new CaromBoardService(new CaromBoardRepository(new FakeInMemoryDatabase()), new PlayerService(new PlayerRepository(new FakeInMemoryDatabase()))));
+    BoardController boardController =
+            new BoardController(new CaromBoardService(new CaromBoardRepositoryImpl(new FakeInMemoryDatabaseImpl()),
+                    new PlayerService(new PlayerRepositoryImpl(new FakeInMemoryDatabaseImpl()))));
 
     @Test
     void shouldBeAbleToCreateBoard() {
@@ -43,6 +45,7 @@ public class CaromBoardControllerTest {
         Assertions.assertEquals(expected, actual3);
         Assertions.assertEquals(expected, actual4);
     }
+
 
 
 }

@@ -4,10 +4,13 @@ import com.amaap.cleanstrike.controller.dto.HttpStatus;
 import com.amaap.cleanstrike.controller.dto.Response;
 import com.amaap.cleanstrike.service.CaromBoardService;
 import com.amaap.cleanstrike.service.exception.InvalidArgumentException;
+import com.google.inject.Inject;
+
 
 public class BoardController {
     private final CaromBoardService caromBoardService;
 
+    @Inject
     public BoardController(CaromBoardService caromBoardService) {
         this.caromBoardService = caromBoardService;
     }
@@ -21,7 +24,9 @@ public class BoardController {
         }
     }
 
-
+    public String startGame() {
+        return caromBoardService.getWinner();
+    }
 
 
 }

@@ -1,13 +1,14 @@
 package com.amaap.cleanstrike.repository;
 
 import com.amaap.cleanstrike.domain.model.entity.CaromBoard;
-import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
+import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabaseImpl;
+import com.amaap.cleanstrike.repository.impl.CaromBoardRepositoryImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 class CaromCaromBoardRepositoryTest {
 
-    CaromBoardRepository caromBoardRepository = new CaromBoardRepository(new FakeInMemoryDatabase());
+    CaromBoardRepository caromBoardRepository = new CaromBoardRepositoryImpl(new FakeInMemoryDatabaseImpl());
 
     @Test
     void shouldBeAbleToSaveTheCaromBoard() {

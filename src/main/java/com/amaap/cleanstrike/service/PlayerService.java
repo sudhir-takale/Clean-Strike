@@ -4,6 +4,8 @@ import com.amaap.cleanstrike.domain.model.entity.Player;
 import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 
+import com.google.inject.Inject;
+
 import java.util.List;
 import java.util.Random;
 
@@ -11,6 +13,7 @@ public class PlayerService {
 
     private final PlayerRepository playerRepository;
 
+    @Inject
     public PlayerService(PlayerRepository playerRepository) {
         this.playerRepository = playerRepository;
     }

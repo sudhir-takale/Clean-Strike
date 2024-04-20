@@ -1,22 +1,13 @@
 package com.amaap.cleanstrike.repository;
 
 import com.amaap.cleanstrike.domain.model.entity.Player;
-import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
 
 import java.util.List;
 
-public class PlayerRepository {
-    private FakeInMemoryDatabase database;
+public interface PlayerRepository {
 
-    public PlayerRepository(FakeInMemoryDatabase database) {
-        this.database = database;
-    }
 
-    public void save(Player player) {
-        database.save(player);
-    }
+    List<Player> getPlayers();
 
-    public List<Player> getPlayers() {
-        return database.getPlayers();
-    }
+    void save(Player player);
 }

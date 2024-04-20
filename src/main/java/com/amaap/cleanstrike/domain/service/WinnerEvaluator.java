@@ -5,12 +5,15 @@ import com.amaap.cleanstrike.domain.model.entity.Player;
 import com.amaap.cleanstrike.domain.service.outcomeprocesses.*;
 import com.amaap.cleanstrike.service.PlayerService;
 
+import com.google.inject.Inject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class WinnerEvaluator {
     private final PlayerService playerService;
 
+    @Inject
     public WinnerEvaluator(PlayerService playerService) {
         this.playerService = playerService;
     }

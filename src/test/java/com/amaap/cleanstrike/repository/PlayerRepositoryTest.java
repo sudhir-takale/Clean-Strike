@@ -2,14 +2,15 @@ package com.amaap.cleanstrike.repository;
 
 import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.domain.model.entity.Player;
-import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabase;
+import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabaseImpl;
+import com.amaap.cleanstrike.repository.impl.PlayerRepositoryImpl;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayerRepositoryTest {
 
-    PlayerRepository playerRepository = new PlayerRepository(new FakeInMemoryDatabase());
+    PlayerRepository playerRepository = new PlayerRepositoryImpl(new FakeInMemoryDatabaseImpl());
     @Test
     void shouldBeAbleToAddPlayerInDatabase() {
         //arrange
