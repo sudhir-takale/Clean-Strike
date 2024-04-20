@@ -23,6 +23,7 @@ class CaromBoardServiceTest {
     void shouldBeAbleToCreateCaromBoardWithInitialValues() throws InvalidArgumentException {
         // act
         boolean result = caromBoardService.create(9, 1);
+
         //assert
         assertTrue(result);
     }
@@ -55,6 +56,7 @@ class CaromBoardServiceTest {
         caromBoardService.create(9, 1);
         playerService.createPlayer(new GameRuleManager());
         playerService.createPlayer(new GameRuleManager());
+
         // act
         String winner = caromBoardService.getWinner();
 

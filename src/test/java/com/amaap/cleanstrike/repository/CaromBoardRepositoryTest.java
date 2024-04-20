@@ -6,7 +6,7 @@ import com.amaap.cleanstrike.repository.impl.CaromBoardRepositoryImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-class CaromCaromBoardRepositoryTest {
+class CaromBoardRepositoryTest {
 
     CaromBoardRepository caromBoardRepository = new CaromBoardRepositoryImpl(new FakeInMemoryDatabaseImpl());
 

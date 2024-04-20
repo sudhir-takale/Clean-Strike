@@ -17,8 +17,8 @@ class PlayerRepositoryTest {
         GameRuleManager gameRuleManager = new GameRuleManager();
 
         //act
-        playerRepository.save(new Player(gameRuleManager));
-        playerRepository.save(new Player(gameRuleManager));
+        playerRepository.save(new Player());
+        playerRepository.save(new Player());
 
         //assert
         assertEquals(2, playerRepository.getPlayers().size());

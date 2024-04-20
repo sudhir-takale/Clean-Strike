@@ -17,7 +17,7 @@ class PlayerServiceTest {
     PlayerService playerService = new PlayerService(new PlayerRepositoryImpl(new FakeInMemoryDatabaseImpl()));
 
     @Test
-    void shouldBeAbleToCreateTwoPlayers() {
+    void shouldBeAbleToCreatePlayer() {
         //arrange
         GameRuleManager gameRuleManager = new GameRuleManager();
 
@@ -50,5 +50,15 @@ class PlayerServiceTest {
         //assert
         assertEquals(2, playerList.size());
     }
+    @Test
+    void shouldReturnRandomIndexWithinMaxLimit() {
+        // arrange
+        int maxLimit = 10;
 
+        // act
+        int randomIndex = playerService.getRandomIndex(maxLimit);
+
+        // assert
+        assertTrue(randomIndex >= 0 && randomIndex < maxLimit);
+    }
 }

@@ -2,6 +2,8 @@ package com.amaap.cleanstrike.domain.model.entity;
 
 import java.util.List;
 
+import static com.amaap.cleanstrike.domain.model.entity.validator.CaromBoardValidator.validate;
+
 public class CaromBoard {
 
     private int id;
@@ -10,6 +12,10 @@ public class CaromBoard {
     private List<Player> players;
 
     public CaromBoard(int blackCoins, int redCoin) {
+        if (!validate(blackCoins, redCoin)) {
+            throw new IllegalArgumentException("Invalid arguments passed");
+        }
+
         this.blackCoins = blackCoins;
         this.redCoins = redCoin;
     }

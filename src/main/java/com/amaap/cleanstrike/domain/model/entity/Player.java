@@ -8,14 +8,11 @@ public class Player {
     private int points;
 
 
-    public Player(GameRuleManager ruleManager) {
-        this.ruleManager = ruleManager;
+    public Player() {
+        ruleManager = new GameRuleManager();
         this.points = 0;
     }
 
-    public int getId() {
-        return this.id;
-    }
 
     public void setId(int id) {
         this.id = id;
@@ -35,14 +32,5 @@ public class Player {
 
     public void setRuleManager(GameRuleManager ruleManager) {
         this.ruleManager = ruleManager;
-    }
-
-    @Override
-    public String toString() {
-        return "Player{" +
-                "id=" + id +
-                ", ruleManager=" + ruleManager +
-                ", points=" + points +
-                '}';
     }
 }

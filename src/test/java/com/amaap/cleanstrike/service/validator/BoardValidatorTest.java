@@ -2,10 +2,20 @@ package com.amaap.cleanstrike.service.validator;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class BoardValidatorTest {
+
+    @Test
+    void shouldBeAbleToCreateInstance() {
+        // arrange & act
+        BoardValidator boardValidator = new BoardValidator();
+
+        // assert
+        assertNotNull(boardValidator);
+    }
 
     @Test
     void shouldReturnFalseWhenInvalidParametersPassed() {
@@ -16,19 +26,23 @@ class BoardValidatorTest {
         boolean result3 = BoardValidator.validate(0, 1);
         boolean result4 = BoardValidator.validate(-12, 1);
         boolean result5 = BoardValidator.validate(9, -3);
-        assertTrue(result);
-        assertTrue(result1);
-        assertTrue(result2);
-        assertTrue(result3);
-        assertTrue(result4);
-        assertTrue(result5);
+
+        // assert
+        assertFalse(result);
+        assertFalse(result1);
+        assertFalse(result2);
+        assertFalse(result3);
+        assertFalse(result4);
+        assertFalse(result5);
     }
 
     @Test
-    void shouldReturnFalseWhenValidParametersPassed() {
-        //act
+    void shouldReturnTrueWhenValidParametersPassed() {
+        // act
         boolean result = BoardValidator.validate(9, 1);
-        assertFalse(result);
+
+        // assert
+        assertTrue(result);
     }
 
 }

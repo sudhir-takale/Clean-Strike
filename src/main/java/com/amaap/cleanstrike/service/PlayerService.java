@@ -22,7 +22,7 @@ public class PlayerService {
 
         if (ruleManager == null) throw new NullPointerException("GameRuleManager is null");
 
-        Player player = new Player(ruleManager);
+        Player player = new Player();
         playerRepository.save(player);
         return true;
     }
