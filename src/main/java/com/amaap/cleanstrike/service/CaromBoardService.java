@@ -47,7 +47,7 @@ public class CaromBoardService {
         List<Player> players = playerService.getPlayer();
         for (Player player : players) {
             if (playersToAssign.size() == 2) {
-                break;
+                return playersToAssign;
             }
             playersToAssign.add(player);
         }

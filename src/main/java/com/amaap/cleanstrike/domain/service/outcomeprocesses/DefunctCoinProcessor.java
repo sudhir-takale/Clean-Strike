@@ -7,6 +7,7 @@ import com.amaap.cleanstrike.domain.service.CaromBoardState;
 public class DefunctCoinProcessor implements CaromBoardState {
     @Override
     public void applyStrike(CaromBoard board, Player player) {
+
         player.setPoints(player.getPoints() - 2);
     }
 }
