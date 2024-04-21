@@ -9,5 +9,7 @@ public class StrikeProcessor implements CaromBoardState {
     public void applyStrike(CaromBoard board, Player player) {
         player.setPoints(player.getPoints() + 1);
         board.setBlackCoins(board.getBlackCoins() - 1);
+        player.setLastStrike("strike");
+
     }
 }

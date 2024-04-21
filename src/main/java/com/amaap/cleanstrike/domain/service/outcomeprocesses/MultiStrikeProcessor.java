@@ -8,5 +8,6 @@ public class MultiStrikeProcessor implements CaromBoardState {
     @Override
     public void applyStrike(CaromBoard board, Player player) {
         player.setPoints(player.getPoints() + 2);
+        player.setLastStrike("multistrike");
     }
 }

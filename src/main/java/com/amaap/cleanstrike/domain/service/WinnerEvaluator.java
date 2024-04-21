@@ -18,43 +18,36 @@ public class WinnerEvaluator {
         this.playerService = playerService;
     }
 
-    private List<CaromBoardState> initializeBoardStates() {
+    private List<CaromBoardState> boardStates() {
         List<CaromBoardState> boardStates = new ArrayList<>();
         boardStates.add(new RedStrikeProcessor());
         boardStates.add(new MultiStrikeProcessor());
         boardStates.add(new StrikeProcessor());
         boardStates.add(new DefunctCoinProcessor());
         boardStates.add(new StrikerStrikeProcessor());
+        boardStates.add(new NonStrikeProcessor());
         return boardStates;
     }
 
     public String getWinner(CaromBoard caromBoard) {
-        List<CaromBoardState> boardStates = initializeBoardStates();
+        List<CaromBoardState> boardStates = boardStates();
         Player firstPlayer = caromBoard.getPlayers().get(0);
         Player secondPlayer = caromBoard.getPlayers().get(1);
 
         while (!isGameOver) {
-            applyRandomStrike(boardStates, caromBoard, firstPlayer);
-            System.out.println("Player one points :" + firstPlayer.getPoints());
+            playerService.applyRandomStrike(boardStates, caromBoard, firstPlayer);
 
             String result = checkScore(firstPlayer, secondPlayer);
-            if (!result.equals("Draw")) return result;
+            if (result.equals("Player 1")) return result;
 
-            applyRandomStrike(boardStates, caromBoard, secondPlayer);
-            System.out.println("Player two points :" + secondPlayer.getPoints());
+            playerService.applyRandomStrike(boardStates, caromBoard, secondPlayer);
 
             result = checkScore(firstPlayer, secondPlayer);
-            if (!result.equals("Draw")) return result;
+            if (result.equals("Player 2")) return result;
         }
         return "Draw";
     }
 
-
-    private void applyRandomStrike(List<CaromBoardState> boardStates, CaromBoard caromBoard, Player player) {
-        int randomIndex = playerService.getRandomIndex(boardStates.size());
-        CaromBoardState selectedState = boardStates.get(randomIndex);
-        selectedState.applyStrike(caromBoard, player);
-    }
 
     private String checkScore(Player firstPlayer, Player secondPlayer) {
         int MAX_SCORE_TO_WIN = 5;

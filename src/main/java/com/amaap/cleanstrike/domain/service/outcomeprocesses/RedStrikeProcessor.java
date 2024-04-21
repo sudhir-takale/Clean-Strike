@@ -10,5 +10,7 @@ public class RedStrikeProcessor implements CaromBoardState {
     public void applyStrike(CaromBoard board, Player player) {
         player.setPoints(player.getPoints() + 3);
         board.setRedCoins(0);
+        player.setLastStrike("redstrike");
+
     }
 }

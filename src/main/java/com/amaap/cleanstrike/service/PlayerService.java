@@ -1,9 +1,10 @@
 package com.amaap.cleanstrike.service;
 
+import com.amaap.cleanstrike.domain.model.entity.CaromBoard;
 import com.amaap.cleanstrike.domain.model.entity.Player;
 import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
+import com.amaap.cleanstrike.domain.service.CaromBoardState;
 import com.amaap.cleanstrike.repository.PlayerRepository;
-
 import com.google.inject.Inject;
 
 import java.util.List;
@@ -35,4 +36,11 @@ public class PlayerService {
         Random random = new Random();
         return random.nextInt(maxLimit);
     }
+
+    public void applyRandomStrike(List<CaromBoardState> boardStates, CaromBoard caromBoard, Player player) {
+        int randomIndex = getRandomIndex(boardStates.size());
+        CaromBoardState selectedState = boardStates.get(randomIndex);
+        selectedState.applyStrike(caromBoard, player);
+    }
+
 }
