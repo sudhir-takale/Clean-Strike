@@ -1,15 +1,15 @@
 package com.amaap.cleanstrike.domain.model.entity;
 
-import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
+import com.amaap.cleanstrike.domain.model.valueobject.FoulStrikeManager;
 
 public class Player {
     private int id;
-    private GameRuleManager ruleManager;
+    private FoulStrikeManager ruleManager;
     private int points;
     private String lastStrike;
 
     public Player() {
-        ruleManager = new GameRuleManager();
+        ruleManager = new FoulStrikeManager();
         this.points = 0;
         lastStrike = " ";
     }
@@ -34,7 +34,7 @@ public class Player {
         this.points = points;
     }
 
-    public GameRuleManager getRuleManager() {
+    public FoulStrikeManager getRuleManager() {
         return ruleManager;
     }
 

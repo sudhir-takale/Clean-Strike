@@ -39,10 +39,10 @@ public class CaromBoardService {
         List<Player> players = getPlayersToAssign();
         board.setPlayers(players);
         WinnerEvaluator winnerEvaluator = new WinnerEvaluator(playerService);
-        return winnerEvaluator.getWinner(board);
+        return winnerEvaluator.winnerProcessor(board);
     }
 
-    private List<Player> getPlayersToAssign() {
+    public List<Player> getPlayersToAssign() {
         List<Player> playersToAssign = new ArrayList<Player>();
         List<Player> players = playerService.getPlayer();
         for (Player player : players) {
@@ -53,6 +53,5 @@ public class CaromBoardService {
         }
         return playersToAssign;
     }
-
 
 }

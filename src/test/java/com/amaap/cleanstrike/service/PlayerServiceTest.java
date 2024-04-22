@@ -1,15 +1,14 @@
 package com.amaap.cleanstrike.service;
 
 import com.amaap.cleanstrike.domain.model.entity.Player;
-import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
-import com.amaap.cleanstrike.repository.impl.PlayerRepositoryImpl;
+import com.amaap.cleanstrike.domain.model.valueobject.FoulStrikeManager;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabaseImpl;
+import com.amaap.cleanstrike.repository.impl.PlayerRepositoryImpl;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PlayerServiceTest {
@@ -19,30 +18,22 @@ class PlayerServiceTest {
     @Test
     void shouldBeAbleToCreatePlayer() {
         //arrange
-        GameRuleManager gameRuleManager = new GameRuleManager();
+        FoulStrikeManager foulStrikeManager = new FoulStrikeManager();
 
         //act
-        boolean result = playerService.createPlayer(gameRuleManager);
+        boolean result = playerService.createPlayer();
 
         //assert
         assertTrue(result);
     }
 
-    @Test
-    void shouldThrowExceptionWhenRuleManagerIsNull() {
-        //arrange
-        GameRuleManager ruleManager = null;
-
-        //assert
-        assertThrows(NullPointerException.class, () -> playerService.createPlayer(null));
-    }
-
+   
     @Test
     void shouldReturnListOfTwoPlayers() {
         //arrange
-        GameRuleManager gameRuleManager = new GameRuleManager();
-        playerService.createPlayer(gameRuleManager);
-        playerService.createPlayer(gameRuleManager);
+        FoulStrikeManager foulStrikeManager = new FoulStrikeManager();
+        playerService.createPlayer();
+        playerService.createPlayer();
 
         //act
         List<Player> playerList = playerService.getPlayer();
@@ -50,6 +41,7 @@ class PlayerServiceTest {
         //assert
         assertEquals(2, playerList.size());
     }
+
     @Test
     void shouldReturnRandomIndexWithinMaxLimit() {
         // arrange

@@ -18,7 +18,7 @@ public class WinnerEvaluator {
         this.playerService = playerService;
     }
 
-    private List<CaromBoardState> boardStates() {
+    List<CaromBoardState> boardStates() {
         List<CaromBoardState> boardStates = new ArrayList<>();
         boardStates.add(new RedStrikeProcessor());
         boardStates.add(new MultiStrikeProcessor());
@@ -29,7 +29,7 @@ public class WinnerEvaluator {
         return boardStates;
     }
 
-    public String getWinner(CaromBoard caromBoard) {
+    public String winnerProcessor(CaromBoard caromBoard) {
         List<CaromBoardState> boardStates = boardStates();
         Player firstPlayer = caromBoard.getPlayers().get(0);
         Player secondPlayer = caromBoard.getPlayers().get(1);
@@ -49,15 +49,15 @@ public class WinnerEvaluator {
     }
 
 
-    private String checkScore(Player firstPlayer, Player secondPlayer) {
+    String checkScore(Player firstPlayer, Player secondPlayer) {
         int MAX_SCORE_TO_WIN = 5;
-        int MIN_SCORE_TO_WIN = 3;
+        int MIN_SCORE_DIFFERENCE = 3;
 
-        if (firstPlayer.getPoints() >= MAX_SCORE_TO_WIN && firstPlayer.getPoints() - secondPlayer.getPoints() >= MIN_SCORE_TO_WIN) {
+        if (firstPlayer.getPoints() >= MAX_SCORE_TO_WIN && firstPlayer.getPoints() - secondPlayer.getPoints() >= MIN_SCORE_DIFFERENCE) {
             System.out.println("Player 1 wins by " + firstPlayer.getPoints() + " to " + secondPlayer.getPoints());
             isGameOver = true;
             return "Player 1";
-        } else if (secondPlayer.getPoints() >= MAX_SCORE_TO_WIN && secondPlayer.getPoints() - firstPlayer.getPoints() >= MIN_SCORE_TO_WIN) {
+        } else if (secondPlayer.getPoints() >= MAX_SCORE_TO_WIN && secondPlayer.getPoints() - firstPlayer.getPoints() >= MIN_SCORE_DIFFERENCE) {
             System.out.println("Player 2 wins by " + secondPlayer.getPoints() + " to " + firstPlayer.getPoints());
             isGameOver = true;
             return "Player 2";

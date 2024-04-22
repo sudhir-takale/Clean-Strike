@@ -1,6 +1,5 @@
 package com.amaap.cleanstrike.domain.model.entity;
 
-import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;

@@ -1,7 +1,6 @@
-package com.amaap.cleanstrike.service;
+package com.amaap.cleanstrike.service;//package com.amaap.cleanstrike.service;
 
 import com.amaap.cleanstrike.domain.model.entity.CaromBoard;
-import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabaseImpl;
 import com.amaap.cleanstrike.repository.impl.CaromBoardRepositoryImpl;
 import com.amaap.cleanstrike.repository.impl.PlayerRepositoryImpl;
@@ -12,12 +11,11 @@ import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+
 class CaromBoardServiceTest {
 
     PlayerService playerService = new PlayerService(new PlayerRepositoryImpl(new FakeInMemoryDatabaseImpl()));
-    CaromBoardService caromBoardService =
-            new CaromBoardService(new CaromBoardRepositoryImpl(new FakeInMemoryDatabaseImpl())
-                    , playerService);
+    CaromBoardService caromBoardService = new CaromBoardService(new CaromBoardRepositoryImpl(new FakeInMemoryDatabaseImpl()), playerService);
 
     @Test
     void shouldBeAbleToCreateCaromBoardWithInitialValues() throws InvalidArgumentException {
@@ -54,8 +52,8 @@ class CaromBoardServiceTest {
     void shouldReturnWinnerWhenGameIsCompleted() throws InvalidArgumentException {
         // arrange
         caromBoardService.create(9, 1);
-        playerService.createPlayer(new GameRuleManager());
-        playerService.createPlayer(new GameRuleManager());
+        playerService.createPlayer();
+        playerService.createPlayer();
 
         // act
         String winner = caromBoardService.getWinner();
@@ -64,6 +62,47 @@ class CaromBoardServiceTest {
         assertNotNull(winner);
         assertFalse(winner.isEmpty());
     }
+
+//    @Test
+//    void shouldReturnPlayer1AsAWinnerOfTheGame() throws InvalidArgumentException {
+//        // arrange
+//        caromBoardService.create(9, 1);
+//        playerService.createPlayer();
+//        playerService.createPlayer();
+//        when(playerService.getRandomIndex(6)).thenReturn(1).thenReturn(1).thenReturn(0);
+//
+//        // act
+//        String winner = caromBoardService.getWinner();
+//        System.out.println(winner);
+//
+//        // assert
+//        //        assertEquals("Player 1", winner);
+//
+//    }
+//
+//    @Test
+//    void shouldReturnPlayer2AsAWinnerOfTheGame() throws InvalidArgumentException {
+//        // arrange
+//        caromBoardService.create(9, 1);
+//        playerService.createPlayer();
+//        playerService.createPlayer();
+//        when(playerService.getRandomIndex(6))
+//                .thenReturn(0)
+//                .thenReturn(0)
+//                .thenReturn(1);
+//
+//        // act
+//        String winner = caromBoardService.getWinner();
+//
+//        // assert
+//        assertEquals("Player 2", winner);
+//    }
+//
+//    @Test
+//    void shouldReturnDrawAsIfNoPlayerHasAchievedTarget() {
+//
+//
+//    }
 
 
 }

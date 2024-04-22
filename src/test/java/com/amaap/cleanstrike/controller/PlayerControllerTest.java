@@ -2,7 +2,7 @@ package com.amaap.cleanstrike.controller;
 
 import com.amaap.cleanstrike.controller.dto.HttpStatus;
 import com.amaap.cleanstrike.controller.dto.Response;
-import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
+import com.amaap.cleanstrike.domain.model.valueobject.FoulStrikeManager;
 import com.amaap.cleanstrike.repository.impl.PlayerRepositoryImpl;
 import com.amaap.cleanstrike.repository.db.FakeInMemoryDatabaseImpl;
 import com.amaap.cleanstrike.service.PlayerService;
@@ -18,11 +18,11 @@ public class PlayerControllerTest {
     @Test
     void shouldBeAbleToCreateTwoPlayers() {
         //arrange
-        GameRuleManager ruleManager = new GameRuleManager();
+        FoulStrikeManager ruleManager = new FoulStrikeManager();
         Response expected = new Response(HttpStatus.OK,"Players created successfully" );
 
         //act
-        Response actual = playerController.createPlayer(ruleManager);
+        Response actual = playerController.createPlayer();
 
         //assert
         Assertions.assertEquals(expected, actual);

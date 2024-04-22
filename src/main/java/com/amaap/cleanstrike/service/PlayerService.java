@@ -2,7 +2,6 @@ package com.amaap.cleanstrike.service;
 
 import com.amaap.cleanstrike.domain.model.entity.CaromBoard;
 import com.amaap.cleanstrike.domain.model.entity.Player;
-import com.amaap.cleanstrike.domain.model.valueobject.GameRuleManager;
 import com.amaap.cleanstrike.domain.service.CaromBoardState;
 import com.amaap.cleanstrike.repository.PlayerRepository;
 import com.google.inject.Inject;
@@ -19,9 +18,7 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    public boolean createPlayer(GameRuleManager ruleManager) {
-
-        if (ruleManager == null) throw new NullPointerException("GameRuleManager is null");
+    public boolean createPlayer() {
 
         Player player = new Player();
         playerRepository.save(player);
@@ -34,8 +31,9 @@ public class PlayerService {
 
     public int getRandomIndex(int maxLimit) {
         Random random = new Random();
-        return random.nextInt(maxLimit);
+        return Math.abs(random.nextInt(maxLimit));
     }
+
 
     public void applyRandomStrike(List<CaromBoardState> boardStates, CaromBoard caromBoard, Player player) {
         int randomIndex = getRandomIndex(boardStates.size());
