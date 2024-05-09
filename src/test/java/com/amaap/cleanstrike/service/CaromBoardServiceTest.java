@@ -63,46 +63,5 @@ class CaromBoardServiceTest {
         assertFalse(winner.isEmpty());
     }
 
-//    @Test
-//    void shouldReturnPlayer1AsAWinnerOfTheGame() throws InvalidArgumentException {
-//        // arrange
-//        caromBoardService.create(9, 1);
-//        playerService.createPlayer();
-//        playerService.createPlayer();
-//        when(playerService.getRandomIndex(6)).thenReturn(1).thenReturn(1).thenReturn(0);
-//
-//        // act
-//        String winner = caromBoardService.getWinner();
-//        System.out.println(winner);
-//
-//        // assert
-//        //        assertEquals("Player 1", winner);
-//
-//    }
-//
-//    @Test
-//    void shouldReturnPlayer2AsAWinnerOfTheGame() throws InvalidArgumentException {
-//        // arrange
-//        caromBoardService.create(9, 1);
-//        playerService.createPlayer();
-//        playerService.createPlayer();
-//        when(playerService.getRandomIndex(6))
-//                .thenReturn(0)
-//                .thenReturn(0)
-//                .thenReturn(1);
-//
-//        // act
-//        String winner = caromBoardService.getWinner();
-//
-//        // assert
-//        assertEquals("Player 2", winner);
-//    }
-//
-//    @Test
-//    void shouldReturnDrawAsIfNoPlayerHasAchievedTarget() {
-//
-//
-//    }
-
 
 }
